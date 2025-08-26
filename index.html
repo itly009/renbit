@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAAA 가가가</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --primary-light: #ff8c5a;
+            --primary-dark: #e55a2b;
+            --primary-bg: #ff6b35;
+            --primary-bg-light: #ff8c5a;
+            --primary-bg-dark: #e55a2b;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-light: rgba(255, 255, 255, 0.6);
+            --text-dark: #1a1a1a;
+            --bg-primary: #ff6b35;
+            --bg-secondary: #ff8c5a;
+            --bg-accent: #ffffff;
+            --border: rgba(255, 255, 255, 0.2);
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 107, 53, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 72px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-accent);
+            color: var(--text-dark);
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .cta-primary:hover {
+            background: #f5f5f5;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            margin-left: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--text-primary);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 60px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: var(--bg-accent);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-accent);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(255,107,53,0.15);
+            border-color: var(--primary);
+        }
+
+        .feature-number {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Models Section */
+        .models {
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--bg-primary) 100%);
+        }
+
+        .models .section-title {
+            color: var(--text-primary);
+        }
+
+        .models .section-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .model-card {
+            background: var(--bg-accent);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .model-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .model-header {
+            padding: 32px 32px 24px;
+            background: linear-gradient(135deg, #f8f8f8 0%, #f0f0f0 100%);
+        }
+
+        .model-brand {
+            font-size: 14px;
+            color: #999;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .model-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .model-specs {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .model-body {
+            padding: 24px 32px 32px;
+            background: var(--bg-accent);
+        }
+
+        .model-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .price-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .price-period {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .model-cta {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .model-cta:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: var(--text-dark);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-subtitle {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 40px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--primary);
+            background: rgba(255,107,53,0.05);
+        }
+
+        .contact-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .contact-value {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .cta-secondary {
+                margin-left: 0;
+                margin-top: 16px;
+            }
+
+            .stats-grid {
+                gap: 40px;
+            }
+
+            .features-grid,
+            .models-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .features,
+            .models,
+            .contact {
+                padding: 80px 0;
+            }
+        }
+
+        /* Smooth animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">AAAA 가가가</div>
+            <ul class="nav-links">
+                <li><a href="#home">AAAA 가가가</a></li>
+                <li><a href="#features">AAAA 가가가</a></li>
+                <li><a href="#models">AAAA 가가가</a></li>
+                <li><a href="#contact">AAAA 가가가</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>AAAA 가가가<br>AAAA 가가가</h1>
+                <p class="hero-subtitle">AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+                <div>
+                    <a href="#contact" class="cta-primary">AAAA 가가가</a>
+                    <a href="#models" class="cta-secondary">AAAA 가가가</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-in">
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가</p>
+                </div>
+                <div class="stat-item fade-in">
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AAAA 가가가</h2>
+                <p class="section-subtitle">AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-number">AAAA 가가가</div>
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">AAAA 가가가</div>
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">AAAA 가가가</div>
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">AAAA 가가가</div>
+                    <h3>AAAA 가가가</h3>
+                    <p>AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Models Section -->
+    <section class="models" id="models">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AAAA 가가가</h2>
+                <p class="section-subtitle">AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+            </div>
+            <div class="models-grid">
+                <div class="model-card fade-in">
+                    <div class="model-header">
+                        <div class="model-brand">AAAA 가가가</div>
+                        <div class="model-name">AAAA 가가가</div>
+                        <div class="model-specs">AAAA 가가가 AAAA 가가가 AAAA 가가가</div>
+                    </div>
+                    <div class="model-body">
+                        <div class="model-price">
+                            <span class="price-amount">AAAA 가가가</span>
+                            <span class="price-period">AAAA 가가가</span>
+                        </div>
+                        <button class="model-cta">AAAA 가가가</button>
+                    </div>
+                </div>
+                <div class="model-card fade-in">
+                    <div class="model-header">
+                        <div class="model-brand">AAAA 가가가</div>
+                        <div class="model-name">AAAA 가가가</div>
+                        <div class="model-specs">AAAA 가가가 AAAA 가가가 AAAA 가가가</div>
+                    </div>
+                    <div class="model-body">
+                        <div class="model-price">
+                            <span class="price-amount">AAAA 가가가</span>
+                            <span class="price-period">AAAA 가가가</span>
+                        </div>
+                        <button class="model-cta">AAAA 가가가</button>
+                    </div>
+                </div>
+                <div class="model-card fade-in">
+                    <div class="model-header">
+                        <div class="model-brand">AAAA 가가가</div>
+                        <div class="model-name">AAAA 가가가</div>
+                        <div class="model-specs">AAAA 가가가 AAAA 가가가 AAAA 가가가</div>
+                    </div>
+                    <div class="model-body">
+                        <div class="model-price">
+                            <span class="price-amount">AAAA 가가가</span>
+                            <span class="price-period">AAAA 가가가</span>
+                        </div>
+                        <button class="model-cta">AAAA 가가가</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2 class="section-title">AAAA 가가가</h2>
+                <p class="section-subtitle">AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item fade-in">
+                    <div class="contact-label">AAAA 가가가</div>
+                    <div class="contact-value">AAAA 가가가</div>
+                    <div class="contact-desc">AAAA 가가가 AAAA 가가가 AAAA 가가가</div>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-label">AAAA 가가가</div>
+                    <div class="contact-value">AAAA 가가가</div>
+                    <div class="contact-desc">AAAA 가가가 AAAA 가가가 AAAA 가가가</div>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-label">AAAA 가가가</div>
+                    <div class="contact-value">AAAA 가가가</div>
+                    <div class="contact-desc">AAAA 가가가 AAAA 가가가 AAAA 가가가</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; AAAA 가가가 AAAA 가가가. AAAA 가가가 AAAA 가가가 AAAA 가가가.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 100) {
+                header.style.background = 'rgba(255, 107, 53, 0.95)';
+                header.style.borderBottomColor = 'rgba(255, 255, 255, 0.3)';
+            } else {
+                header.style.background = 'rgba(255, 107, 53, 0.9)';
+                header.style.borderBottomColor = 'var(--border)';
+            }
+            
+            // Hide/show header on scroll
+            if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Model card interactions
+        document.querySelectorAll('.model-card').forEach(card => {
+            const cta = card.querySelector('.model-cta');
+            const modelName = card.querySelector('.model-name').textContent;
+            
+            cta.addEventListener('click', (e) => {
+                e.stopPropagation();
+                // 실제 구현에서는 모달이나 폼으로 연결
+                alert(`${modelName} AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가 AAAA 가가가`);
+            });
+        });
+
+        // Contact item hover effects
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const label = item.querySelector('.contact-label').textContent;
+                const value = item.querySelector('.contact-value').textContent;
+                
+                if (label === 'AAAA 가가가') {
+                    window.location.href = `tel:${value.replace(/[^0-9]/g, '')}`;
+                } else if (label === 'AAAA 가가가') {
+                    window.location.href = `mailto:${value}`;
+                }
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
